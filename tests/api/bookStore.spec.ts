@@ -64,4 +64,16 @@ test.describe('BookStore API', () => {
     expect(Number(body.code)).toBe(1200);
     expect(body.message).toBe('User not authorized!');
   });
+
+  test('rejects deleting books without authorization', async ({ request }) => {
+    // No token on purpose; UserId can be any UUID — auth fails before resource checks.
+    const response = await request.delete('/BookStore/v1/Books', {
+      params: { UserId: '00000000-0000-0000-0000-000000000000' },
+    });
+
+    expect(response.status()).toBe(401);
+    const body = (await response.json()) as ErrorResponse;
+    expect(Number(body.code)).toBe(1200);
+    expect(body.message).toBe('User not authorized!');
+  });
 });
