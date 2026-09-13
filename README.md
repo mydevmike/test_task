@@ -80,7 +80,7 @@ Page Object (`HomePage`, `WebTablesPage`) держит локаторы и ша�
 - создание пользователя (`POST /Account/v1/User`);
 - добавление книги (`POST /BookStore/v1/Books`) с предварительным получением токена;
 - удаление книг (`DELETE /BookStore/v1/Books?UserId={userId}`);
-- негативы: невалидный пароль и add без Authorization.
+- негативы: невалидный пароль, add/delete без Authorization.
 
 ISBN зафиксирован константой (`9781449325862`, Git Pocket Guide) — каталог общий и read-only.
 
